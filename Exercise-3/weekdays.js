@@ -47,7 +47,7 @@ class showChecked {
   clearChecked() {
     const wkdayCB = document.getElementsByName('weekday');
 
-    for (var i = wkdayCB.length - 1; i >= 0; i--) {
+    for (let i = wkdayCB.length - 1; i >= 0; i--) {
       if (wkdayCB[i].id !== 'none') {
         wkdayCB[i].checked = false;
       }
