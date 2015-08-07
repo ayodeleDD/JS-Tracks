@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 4 - Parent &amp; Children CheckBox</title>
+  <link rel="stylesheet" type="text/css" href="exercise-4.css">
+</head>
+<body>
+
+  <div id="checkboxes">
+    <form action="" id="cbForm">
+      <ul>
+        <li>
+          <input type="checkbox" name="color" id="color" class="parentCB" value="color">
+          <label for="color">Color</label>
+          <ul id="colorSibling">
+            <li><input type="checkbox" name="colorList" id="red" value="red"> Red</li>
+            <li><input type="checkbox" name="colorList" id="yellow" value="yellow"> Yellow</li>
+            <li><input type="checkbox" name="colorList" id="green" value="green"> Green</li>
+            <li><input type="checkbox" name="colorList" id="blue" value="blue"> Blue</li>
+          </ul>
+        </li>
+
+        <li>
+          <input type="checkbox" name="drinks" id="drinks" class="parentCB" value="drinks">
+          <label for="drinks">Drinks</label>
+          <ul id="drinksSibling">
+            <li><input type="checkbox" name="drinksList" id="coke" value="coke"> Coke</li>
+            <li><input type="checkbox" name="drinksList" id="pepsi" value="pepsi"> Pepsi</li>
+            <li><input type="checkbox" name="drinksList" id="dew" value="dew"> Dew</li>
+          </ul>
+        </li>
+
+        <li>
+          <input type="checkbox" name="movies" id="movies" class="parentCB" value="movies">
+          <label for="movies">Movies</label>
+          <ul id="moviesSibling">
+            <li><input type="checkbox" id="dar" value="dar"> Dar</li>
+            <li><input type="checkbox" id="sir" value="sir"> Sir</li>
+          </ul>
+        </li>
+
+        <li>
+          <input type="checkbox" name="bikes" id="bikes" class="parentCB" value="bikes">
+          <label for="bikes">Bikes</label>
+            <ul id="bikesSibling">
+            <li><input type="checkbox" id="v-rod" value="v-rod"> V-Rod</li>
+            <li><input type="checkbox" id="pulsar" value="pulsar"> Pulsar</li>
+            <li><input type="checkbox" id="cbz" value="cbz"> CBZ</li>
+          </ul>
+        </li>
+      </ul>
+
+    </form>
+  </div>
+  
+  <script src="exercise-4.js"></script>
+</body>
+</html>

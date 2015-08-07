@@ -1,0 +1,19 @@
+#checkboxes {
+  height: 100px;
+  width: 300px;
+  margin: 0 auto;
+  overflow: scroll;
+}
+
+#checkboxes ul li {
+  list-style: none;
+}
+
+#checkboxes ul li ul {
+  display: none;
+  margin-left: -15px;
+}
+
+label {
+  cursor: pointer;
+}
