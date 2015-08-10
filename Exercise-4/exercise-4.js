@@ -1,17 +1,17 @@
 'use strict';
 
-class displayAndHide {
-  constructor(parentCB) {
-    this.parentCB = parentCB; //Gets the Parent CheckBox
+class DisplayAndHide {
+  constructor(parentCheckBox) {
+    this.parentCheckBox = parentCheckBox; //Gets the Parent CheckBox
     this.init();
   }
 
   init() {
-    const parentCB = this.parentCB;
+    const parentCheckBox = this.parentCheckBox;
     const _this = this;
 
-    for (let i = parentCB.length - 1; i >= 0; i--) {
-      parentCB[i].addEventListener('click', function(e) {
+    for (let i = parentCheckBox.length - 1; i >= 0; i--) {
+      parentCheckBox[i].addEventListener('click', function(e) {
         const parentElement = e.target;
         if (parentElement.checked) {
           _this.toggleChildren(parentElement, true, 'block');
@@ -22,9 +22,9 @@ class displayAndHide {
     };
   }
 
-  toggleChildren(parentElement, state, visibility) {
+  toggleChildren(parentElement, state, toggleDisplay) {
     const siblingId = document.getElementById(`${parentElement.id}Sibling`); //Gets the parent sibling ID
-    siblingId.style.display = visibility;
+    siblingId.style.display = toggleDisplay;
     const silbingCheckBox = siblingId.querySelectorAll('input[type=checkbox]'); //Gets all sibling checkboxes by sibling ID
 
     for (let i = silbingCheckBox.length - 1; i >= 0; i--) {
@@ -34,5 +34,5 @@ class displayAndHide {
   }
 }
 
-const parentCB = document.getElementsByClassName('parentCB');
-new displayAndHide(parentCB);
+const parentCheckBox = document.getElementsByClassName('parentCheckBox');
+new DisplayAndHide(parentCheckBox);
