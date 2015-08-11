@@ -1,60 +1,71 @@
 'use strict';
 
-class showChecked {
+class ShowChecked {
 
-  constructor(myForm) {
+  constructor(myForm, checkBoxLimit) {
     this.checkBoxArray = []; //Empty Array to hold checked checkboxes
     this._form = myForm; //Form Tag ID
+    this.checkBoxLimit = checkBoxLimit;
     this.init();
   }
 
   init() {
     const _this = this;
-    const cbArray = this.checkBoxArray; //Array of Checked Checkboxes
-
     this._form.addEventListener('click', function(e) {
-      const formElement = e.target;
-
-      if (formElement.id) {
-        if (formElement.checked) {
-          _this.verifyMax(formElement);
-        } else {
-          const indexOfBox = cbArray.indexOf(formElement);
-          cbArray.splice(indexOfBox, 1); //Remove Unchecked Checkbox
-        }
-      }
+      _this.eventHandler(e);
     });
   }
 
-  verifyMax(formElement) {
+  eventHandler(e) {
+    const formElement = e.target;
     const _this = this;
-    const cbArray = this.checkBoxArray;
-    const checkBoxNone = document.getElementById('none');
-
-    if (formElement.id === 'none') {
-      _this.clearChecked();
-    } else {
-      checkBoxNone.checked = false;
-      if (cbArray.length >= 3) {
-        alert(`Only 3 days can be selected. You have already selected ${cbArray[0].value}, ${cbArray[1].value}, ${cbArray[2].value}.`);
-        formElement.checked = false;
+    if (formElement.type) {
+      if (formElement.checked) {
+        _this.verifyMax(formElement, this.checkBoxLimit);
       } else {
-        cbArray.push(formElement);
+        _this.removeUnchecked(formElement);
       }
     }
   }
 
-  clearChecked() {
-    const wkdayCB = document.getElementsByName('weekday');
-
-    for (let i = wkdayCB.length - 1; i >= 0; i--) {
-      if (wkdayCB[i].id !== 'none') {
-        wkdayCB[i].checked = false;
+  verifyMax(formElement, checkBoxLimit) {
+    const _this = this;
+    const checkBoxNone = document.getElementById('none');
+    if (formElement.id === 'none') {
+      _this.clearChecked();
+    } else {
+      checkBoxNone.checked = false;
+      if (this.checkBoxArray.length >= this.checkBoxLimit) {
+        _this.showWarning(formElement, this.checkBoxLimit);
+      } else {
+        this.checkBoxArray.push(formElement);
       }
+    }
+  }
+
+  showWarning(formElement, checkBoxLimit) {
+    this.checkBoxArray.length = checkBoxLimit;
+    formElement.checked = false;
+    let days = [];
+    for (let i = this.checkBoxArray.length - 1; i >= 0; i--) {
+      days.push(this.checkBoxArray[i].value);
+    };
+    alert(`Only ${checkBoxLimit} days can be selected. You have already selected ${days.join(', ')}`);
+  }
+
+  clearChecked() {
+    const weekdayCheckBox = document.getElementsByClassName('weekday');
+    for (let i = weekdayCheckBox.length - 1; i >= 0; i--) {
+      weekdayCheckBox[i].checked = false;
     };
     this.checkBoxArray = [];  //Resets Array
+  }
+
+  removeUnchecked(formElement) {
+    const indexOfBox = this.checkBoxArray.indexOf(formElement);
+    this.checkBoxArray.splice(indexOfBox, 1); //Remove Unchecked Checkbox
   }
 }
 
 const form = document.getElementById('myform');
-new showChecked(form);
+new ShowChecked(form, 3);

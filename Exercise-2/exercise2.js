@@ -1,30 +1,28 @@
 'use strict';
 
-class CheckBoxes {
-  constructor(checkboxes) {
-    this.checkboxes = checkboxes;
+class ToggleCheckBoxes {
+  constructor(buttons) {
+    this.buttons = buttons;
     this.init();
   }
 
   init() {
-    const selectAll = document.getElementById('btn-check');
-    const selectNone = document.getElementById('btn-unCheck');
-    const boxes = this.checkboxes;
-
-    selectAll.addEventListener('click', function() {
-      for (let i = 0; i < boxes.length; i++) {
-        boxes[i].checked = true;
-      }
-    });
-
-    selectNone.addEventListener('click', function() {
-      for (let i = 0; i < boxes.length; i++) {
-        boxes[i].checked = false;
-      }
-    });
+    const _this = this;
+    for (let i = this.buttons.length - 1; i >= 0; i--) {
+      this.buttons[i].addEventListener('click', function(e) {
+        const linkButton = e.target;
+        (linkButton.id === 'buttonCheck') ? _this.toggleCheckBox(true) : _this.toggleCheckBox(false);
+      });
+    };
   }
 
+  toggleCheckBox(state) {
+    const boxes = document.getElementsByClassName('color');
+    for (let i = 0; i < boxes.length; i++) {
+      boxes[i].checked = state;
+    }
+  }
 }
 
-const chkBoxes = document.getElementsByName('color');
-new CheckBoxes(chkBoxes);
+const chkBoxes = document.getElementsByClassName('button');
+new ToggleCheckBoxes(chkBoxes);
