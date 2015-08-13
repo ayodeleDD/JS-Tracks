@@ -1,0 +1,44 @@
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  
+}
+
+#form-group {
+  padding: 20px 20px;
+  background-color: #E8F2D7;
+  border-radius: 10px;
+}
+
+.form-elements {
+  margin-top: 15px;
+  text-align: left;
+}
+
+label {
+  font-size: 14px;
+  text-align: left;
+  font-weight: bold;
+  display: inline-block;
+  width: 120px;
+}
+
+input[type="text"] {
+  width: 230px;
+}
+
+#submitButton {
+  background-color: #65763A;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: none;
+}
