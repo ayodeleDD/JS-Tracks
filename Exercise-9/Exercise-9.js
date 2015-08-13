@@ -15,9 +15,18 @@ class FormValidator {
 
   validateFormElements(formEvent) {
     const _this = this;
+    const formElements = {
+      email: document.getElementById('email'),
+      url: document.getElementById('url'),
+    };
+    const patterns = {
+      email: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i,
+      url: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+    };
     _this.validateTextBoxes(formEvent);
     _this.validateTextArea(formEvent);
     _this.validateCheckBox(formEvent);
+    _this.validatePatterns(formEvent, patterns, formElements);
   }
 
   validateTextBoxes(formEvent) {
@@ -44,6 +53,20 @@ class FormValidator {
       alert(`${checkBox.name} cannot be left unchecked`);
       formEvent.preventDefault();
     }
+  }
+
+  validatePatterns(formEvent, patterns, formElements) {
+    Object.keys(formElements).some( function(element) {
+      let id = formElements[element].id;
+      let value = formElements[element].value;
+      let name = formElements[element].name;
+      if (value !== '' && patterns[id]) {
+        if (!patterns[id].test(value)) {
+          alert(`Please enter a valid ${name}`);
+          formEvent.preventDefault();
+        }
+      }
+    });
   }
 }
 
