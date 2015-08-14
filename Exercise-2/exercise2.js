@@ -24,5 +24,5 @@ class ToggleCheckBoxes {
   }
 }
 
-const chkBoxes = document.getElementsByClassName('button');
-new ToggleCheckBoxes(chkBoxes);
+const buttons = document.getElementsByClassName('button');
+new ToggleCheckBoxes(buttons);
