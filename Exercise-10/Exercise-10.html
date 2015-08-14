@@ -1,26 +1,66 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Exercise 10 - Number Valiadtion </title>
-    <link rel="stylesheet" href="Exercise-10.css">
+    <title>Exercise 10 - Regular Expression </title>
+    <link rel="stylesheet" type="text/css" href="Exercise-10.css">
+
+    <script src='../traceurCompiler/bin/traceur.js'></script>
+    <script src='../traceurCompiler/src/bootstrap.js'></script>
+    <script>
+      traceur.options.experimental = true;
+    </script>
   </head>
 
   <body>
-    <form id="myForm">
+    <form id="myForm" method="POST">
+      <h4>Registration Form</h4>
+
       <div id='form-group'>
         <div class='form-elements'>
-          <label for='number'>Enter Number</label>
-          <input type='text' name='number' id='number' class='form-content'> 
+          <label for='loginId'>Login Id</label>
+          <input type='text' name='Login Id' id='loginId' class='form-content'> 
         </div>
 
         <div class='form-elements'>
-          <label for='result'>Result</label>
-          <input type='text' name='result' id='result' class='form-content'> 
+          <label for='email'>Email</label>
+          <input type='text' name='Email' id='email' class='form-content'> 
+        </div>
+
+        <div class='form-elements'>
+          <label for='fullName'>Name</label>
+          <input type='text' name='Name' id='fullName' class='form-content'> 
+        </div>
+
+        <div class='form-elements'>
+          <label for='timezone'>Timezone</label>
+          <select name='timezone' id='timezone'>
+            <option>GMT</option>
+            <option>UTC</option>
+          </select> 
+        </div>
+
+        <div class='form-elements'>
+          <label for='homePage'>Home Page</label>
+          <input type='text' name='Home Page' id='url' class='form-content'>
+          <small>(http://example.com)</small>
+        </div>
+
+        <div class='form-elements'>
+          <label for='aboutMe'>About me</label>
+          <textarea name='About Me' id='aboutMe' rows='10' cols='40' class='form-content'></textarea>
+        </div>
+
+        <div class='form-elements'>
+          <input type='checkbox' id='notifyCheckBox' name="Notication checkbox">
+          <label id='notifyText'>Receive notifications of comments.</label>
+          <p id='notify'>You will be sent an email when someone posts comments to your Blog or Album.</p>
+          <p id='notify-center'>Your Password will be mailed to you.</p>
         </div>
 
         <div id='button'>
-          <input type='submit' value='Submit' id='submitButton'>
+          <input type='submit' value='GO' id='submitButton'>
         </div>
+
       </div>
     </form>
 

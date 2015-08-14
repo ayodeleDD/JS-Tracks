@@ -9,42 +9,15 @@ form {
   
 }
 
-h4 {
-  background-color: #9AB368;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  padding: 5px 0;
-  margin: 0;
-}
-
 #form-group {
   padding: 20px 20px;
   background-color: #E8F2D7;
+  border-radius: 10px;
 }
 
 .form-elements {
   margin-top: 15px;
   text-align: left;
-}
-
-#receive {
-  width: 300px;
-  font-weight: bold;
-}
-
-#notify {
-  font-size: 13px;
-  margin-top: -1px;
-}
-
-#notify-center {
-  font-size: 14px;
-  text-align: center;
-}
-
-label#notifyText {
-  width: 80%;
 }
 
 label {
@@ -59,25 +32,13 @@ input[type="text"] {
   width: 230px;
 }
 
-textarea {
-  resize: vertical;
-  margin-top: 5px;
-}
-
-#button {
-  text-align: center;
-}
-
 #submitButton {
   background-color: #65763A;
   color: white;
   font-weight: bold;
   text-align: center;
-  border-radius: 8px;
-  height: 25px;
-}
-
-
-textarea {
-  width: 450px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: none;
 }
