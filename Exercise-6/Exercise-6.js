@@ -15,36 +15,63 @@ class FormValidator {
 
   validateFormElements(formEvent) {
     const _this = this;
-    _this.validateTextBoxes(formEvent);
-    _this.validateTextArea(formEvent);
-    _this.validateCheckBox(formEvent);
+    if (_this.validateTextBoxes() || _this.validateTextArea() || _this.validateCheckBox()) {
+      formEvent.preventDefault();
+    }
   }
 
-  validateTextBoxes(formEvent) {
+  validateTextBoxes() {
+    const _this = this;
     const textboxes = document.querySelectorAll('input[type=text]');
     for (let i = 0; i < textboxes.length; i++) {
-      if (textboxes[i].value === '') {
+      if (_this.isEmpty(textboxes[i].value)) {
         alert(`${textboxes[i].name} cannot be empty`);
-        formEvent.preventDefault();
+        return true;
       }
     };
+    return false;
   }
 
-  validateTextArea(formEvent) {
+  validateTextArea() {
+    const _this = this;
     const textarea = document.querySelector('textarea');
-    if (textarea.value === '' || textarea.length < 50) {
+    if (_this.isEmpty(textarea.value) || _this.checkTextAreaLength(textarea, 50)) {
       alert (`${textarea.name} field is either empty or less than 50 characters`);
-      formEvent.preventDefault();
+      return true;
     }
+    return false;
   }
 
-  validateCheckBox(formEvent) {
+  validateCheckBox() {
+    const _this = this;
     const checkBox = document.getElementById('notifyCheckBox');
-    if (checkBox.checked === false) {
+    if (_this.isChecked(checkBox)) {
       alert(`${checkBox.name} cannot be left unchecked`);
-      formEvent.preventDefault();
+      return true;
     }
+    return false;
   }
+
+  isEmpty(value) {
+    if (value === null || value.trim() === '') {
+      return true;
+    }
+    return false;
+  }
+
+ checkTextAreaLength(textarea, areaLength) {
+  if (textarea.length < areaLength) {
+    return true;
+  }
+  return false;
+ }
+
+ isChecked(checkbox) {
+  if(checkbox.checked === false) {
+    return true;
+  }
+  return false;
+ }
 }
 
 const myForm = document.getElementById('myForm');

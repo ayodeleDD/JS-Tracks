@@ -7,20 +7,36 @@ class NamePrompt {
 
   init() {
     const _this = this;
-    window.addEventListener('load', _this.promptUser());
+    _this.promptUser();
   }
 
   promptUser() {
+    const _this = this;
     let firstName = '';
     let lastName = '';
     do {
       firstName = prompt('Please Enter First Name', '');
-      lastName = prompt('Please Enter Last Name', '');
-      if (firstName && lastName) {
-        alert(`Hello ${firstName} ${lastName}`);
-        document.getElementById('greeting').innerHTML = `Hello ${firstName} ${lastName}`;
+      if (!_this.isEmpty(firstName)) {
+        do {
+          lastName = prompt('Please Enter Last Name', '');
+          if (!_this.isEmpty(lastName)) {
+            _this.displayMessage(firstName, lastName);
+          }
+        } while (_this.isEmpty(lastName));
       }
-    } while (!firstName && !lastName);
+    } while (_this.isEmpty(firstName));
+  }
+
+  isEmpty(value) {
+    if (value === null || value.trim() === '') {
+      return true;
+    }
+    return false;
+  }
+
+  displayMessage(firstName, lastName) {
+    alert(`Hello ${firstName} ${lastName}`);
+    document.getElementById('greeting').innerHTML = `Hello ${firstName} ${lastName}`;
   }
 }
 

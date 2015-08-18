@@ -3,7 +3,6 @@
 class ShowChecked {
 
   constructor(myForm, checkBoxLimit) {
-    this.checkBoxArray = []; //Empty Array to hold checked checkboxes
     this._form = myForm; //Form Tag ID
     this.checkBoxLimit = checkBoxLimit;
     this.init();
@@ -46,9 +45,8 @@ class ShowChecked {
     formElement.checked = false;
     const validCheckedBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
     let validCheckedValue = '';
-    if (formElement.checked === false) {
-      for (let i = 0; i < validCheckedBoxes.length; i++)
-        validCheckedValue += `${validCheckedBoxes[i].value} `;
+    for (let i = 0; i < validCheckedBoxes.length; i++) {
+      validCheckedValue += `${validCheckedBoxes[i].value} `;
     }
     alert(`Only ${this.checkBoxLimit} days can be selected. You have already selected ${validCheckedValue}`);
   }
@@ -62,4 +60,4 @@ class ShowChecked {
 }
 
 const form = document.getElementById('myform');
-new ShowChecked(form, 4);
+new ShowChecked(form, 3);
