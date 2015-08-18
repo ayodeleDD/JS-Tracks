@@ -11,7 +11,9 @@ class NumberValidator {
     const _this = this;
     const numberPattern = /^[0-9]*(?:\.\d{1,2})?$/;
     this.submitButton.addEventListener('click', function(formEvent) {
-      _this.validateField(formEvent, numberPattern);
+      if (!_this.validateField(formEvent, numberPattern)) {
+        formEvent.preventDefault();
+      }
     });
   }
 
@@ -22,16 +24,17 @@ class NumberValidator {
     if (_this.isEmpty(numberTextField.value)) {
       numberTextField.focus();
       resultTextField.value = 'Nothing to validate';
-      formEvent.preventDefault();
+      return false;
     } else {
       if (_this.isNumber(numberPattern)) {
-        formEvent.preventDefault();
         setTimeout(function () {
           this.myForm.submit();
         }, 10000); //setTimeout delays submission of form for 10 seconds to show result value
+        return false;
       } else {
-        formEvent.preventDefault();
+        return false;
       }
+      return true;
     }
   }
 
