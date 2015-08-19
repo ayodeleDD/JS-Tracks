@@ -20,10 +20,8 @@ class NamePrompt {
     do {
       lastName = prompt('Please Enter Last Name', '');
     } while (_this.isEmpty(lastName));
-    
-    if (!_this.isEmpty(lastName)) {
-      _this.displayMessage(firstName, lastName);
-    }
+
+    _this.displayMessage(firstName, lastName);
   }
 
   isEmpty(value) {
