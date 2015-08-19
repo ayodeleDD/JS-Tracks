@@ -23,13 +23,13 @@ class ShowChecked {
         if (formElement.id === 'none') {
           _this.clearChecked();
         } else {
-          _this.verifyMax(formElement, this.checkBoxLimit);
+          _this.verifyMax(formElement);
         }
       }
     }
   }
 
-  verifyMax(formElement, checkBoxLimit) {
+  verifyMax(formElement) {
     const _this = this;
     const none = document.getElementById('none');
     if (none.checked === true) {

@@ -52,7 +52,7 @@ class NumberValidator {
   }
 
   isEmpty(textField) {
-    if (textField.trim() === '' || textField === null) {
+    if (textField === null || textField.trim() === '') {
       return true;
     }
     return false;

@@ -16,15 +16,14 @@ class NamePrompt {
     let lastName = '';
     do {
       firstName = prompt('Please Enter First Name', '');
-      if (!_this.isEmpty(firstName)) {
-        do {
-          lastName = prompt('Please Enter Last Name', '');
-          if (!_this.isEmpty(lastName)) {
-            _this.displayMessage(firstName, lastName);
-          }
-        } while (_this.isEmpty(lastName));
-      }
     } while (_this.isEmpty(firstName));
+    do {
+      lastName = prompt('Please Enter Last Name', '');
+    } while (_this.isEmpty(lastName));
+    
+    if (!_this.isEmpty(lastName)) {
+      _this.displayMessage(firstName, lastName);
+    }
   }
 
   isEmpty(value) {
