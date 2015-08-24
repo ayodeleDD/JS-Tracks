@@ -47,11 +47,7 @@ class CountryMover {
     for (let i = fromBox.options.length - 1; i >= 0; i--) {
       let selectedOptions = fromBox.options[i];
       if (selectedOptions.selected) {
-        let option = document.createElement('option');
-        option.appendChild(document.createTextNode(selectedOptions.value));
-        option.value = selectedOptions.value;
-        toBox.appendChild(option);
-        selectedOptions.remove(fromBox.selectedIndex);
+        toBox.add(selectedOptions);
       }
     };
   }
