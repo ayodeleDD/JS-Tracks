@@ -44,11 +44,9 @@ class CountryMover {
 
   moveSelectedOptions(fromBox, toBox) {
     const _this = this;
-    for (let i = fromBox.options.length - 1; i >= 0; i--) {
-      let selectedOptions = fromBox.options[i];
-      if (selectedOptions.selected) {
-        toBox.add(selectedOptions);
-      }
+    let selectedOption = fromBox.selectedOptions;
+    for (let i = selectedOption.length - 1; i >= 0; i--) {
+      toBox.add(selectedOption[i]);
     };
   }
 }
