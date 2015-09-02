@@ -93,8 +93,6 @@ class AddRemoveRows {
     row.cells[0].replaceChild(nameValue, nameBox);
     row.cells[1].replaceChild(emailValue, emailBox);
     row.cells[2].replaceChild(buttonElements, saveButton);
-
-    this.replaceTableCell(row, );
   }
 
   doDeleteTableRow(row) {
