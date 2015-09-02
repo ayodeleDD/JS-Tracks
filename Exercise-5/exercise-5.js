@@ -54,7 +54,7 @@ class AddRemoveRows {
   }
 
   isTextFieldValid(textField) {
-    if (textField.value === null || textField.value === '') {
+    if (textField.value === null || textField.value.trim() === '') {
       alert(`You must enter a name before you can save`);
       return false;
     }
