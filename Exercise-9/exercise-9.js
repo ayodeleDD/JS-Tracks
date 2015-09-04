@@ -8,20 +8,19 @@ class CountryMover {
   }
 
   init() {
-    const _this = this;
     this.leftSideCountry = document.getElementById('leftSideCountry');
     this.rightSideCountry = document.getElementById('rightSideCountry');
     this.addButton.addEventListener('click', function() {
-      if (!_this.isBoxEmpty(leftSideCountry)) {
-        _this.moveSelectedOptions(leftSideCountry, rightSideCountry);
+      if (!this.isBoxEmpty(leftSideCountry)) {
+        this.moveSelectedOptions(leftSideCountry, rightSideCountry);
       }
-    });
+    }.bind(this));
 
     this.removeButton.addEventListener('click', function() {
-      if (!_this.isBoxEmpty(rightSideCountry)) {
-        _this.moveSelectedOptions(rightSideCountry, leftSideCountry);
+      if (!this.isBoxEmpty(rightSideCountry)) {
+        this.moveSelectedOptions(rightSideCountry, leftSideCountry);
       }
-    });
+    }.bind(this));
   }
 
   isOptionSelected(fromBox) {
@@ -33,9 +32,8 @@ class CountryMover {
   }
 
   isBoxEmpty(fromBox) {
-    const _this = this;
     if (fromBox.options.length !== 0) {
-      _this.isOptionSelected(fromBox);
+      this.isOptionSelected(fromBox);
       return false;
     }
     alert('No option to select from at this time');
@@ -43,7 +41,6 @@ class CountryMover {
   }
 
   moveSelectedOptions(fromBox, toBox) {
-    const _this = this;
     let selectedOption = fromBox.selectedOptions;
     for (let i = selectedOption.length - 1; i >= 0; i--) {
       toBox.add(selectedOption[i]);
