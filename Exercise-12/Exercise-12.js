@@ -7,17 +7,16 @@ class UrlChecker {
   }
 
   init() {
-    const _this = this;
     const urlTestPattern = /^(https?:\/\/)?(www?.)?([^.\/.]+(?=\.)|)(\.?[^\/.]+\.[^\/]+)\/?(.+|)$/;
     const urlExtractPattern = /^(?:https?:\/\/)?(?:www?.)?([^.\/.]+(?=\.)|)(\.?[^\/.]+\.[^\/]+)\/?(.+|)$/;
     this.submitButton.addEventListener('click', function(formEvent) {
       const urlInputField = document.getElementById('url');
-      if (!_this.isEmpty(urlInputField) && _this.isValid(urlInputField, urlTestPattern)) {
-        _this.extractDomain(urlInputField, urlExtractPattern);
+      if (!this.isEmpty(urlInputField) && this.isValid(urlInputField, urlTestPattern)) {
+        this.extractDomain(urlInputField, urlExtractPattern);
       } else {
         formEvent.preventDefault();
       }
-    });
+    }.bind(this));
   }
 
   isEmpty(inputField) {

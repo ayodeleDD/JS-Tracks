@@ -9,35 +9,32 @@ class ShowChecked {
   }
 
   init() {
-    const _this = this;
     this._form.addEventListener('click', function(e) {
-      _this.eventHandler(e);
-    });
+      this.eventHandler(e);
+    }.bind(this));
   }
 
   eventHandler(e) {
     const formElement = e.target;
-    const _this = this;
     if (formElement.type) {
       if (formElement.checked) {
         if (formElement.id === 'none') {
-          _this.clearChecked();
+          this.clearChecked();
         } else {
-          _this.verifyMax(formElement);
+          this.verifyMax(formElement);
         }
       }
     }
   }
 
   verifyMax(formElement) {
-    const _this = this;
     const none = document.getElementById('none');
     if (none.checked === true) {
       none.checked = false;
     }
     const validCheckedBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
     if (validCheckedBoxes.length > this.checkBoxLimit) {
-      _this.showWarning(formElement);
+      this.showWarning(formElement);
     }
   }
 

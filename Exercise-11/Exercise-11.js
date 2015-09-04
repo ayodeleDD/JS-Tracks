@@ -8,25 +8,23 @@ class NumberValidator {
   }
 
   init() {
-    const _this = this;
     const numberPattern = /^[0-9]*(?:\.\d{1,2})?$/;
     this.submitButton.addEventListener('click', function(formEvent) {
-      if (!_this.validateField(formEvent, numberPattern)) {
+      if (!this.validateField(formEvent, numberPattern)) {
         formEvent.preventDefault();
       }
-    });
+    }.bind(this));
   }
 
   validateField(formEvent, numberPattern) {
-    const _this = this;
     const numberTextField = document.getElementById('number');
     const resultTextField = document.getElementById('result');
-    if (_this.isEmpty(numberTextField.value)) {
+    if (this.isEmpty(numberTextField.value)) {
       numberTextField.focus();
       resultTextField.value = 'Nothing to validate';
       return false;
     } else {
-      if (_this.isNumber(numberPattern)) {
+      if (this.isNumber(numberPattern)) {
         setTimeout(function () {
           this.myForm.submit();
         }, 10000); //setTimeout delays submission of form for 10 seconds to show result value

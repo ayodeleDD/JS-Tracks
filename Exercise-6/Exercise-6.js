@@ -7,24 +7,21 @@ class FormValidator {
   }
 
   init() {
-    const _this = this;
     this.myForm.addEventListener('submit', function(formEvent) {
-      _this.validateFormElements(formEvent);
-    });
+      this.validateFormElements(formEvent);
+    }.bind(this));
   }
 
   validateFormElements(formEvent) {
-    const _this = this;
-    if (_this.validateTextBoxes() || _this.validateTextArea() || _this.validateCheckBox()) {
+    if (this.validateTextBoxes() || this.validateTextArea() || this.validateCheckBox()) {
       formEvent.preventDefault();
     }
   }
 
   validateTextBoxes() {
-    const _this = this;
     const textboxes = document.querySelectorAll('input[type=text]');
     for (let i = 0; i < textboxes.length; i++) {
-      if (_this.isEmpty(textboxes[i].value)) {
+      if (this.isEmpty(textboxes[i].value)) {
         alert(`${textboxes[i].name} cannot be empty`);
         return true;
       }
@@ -33,9 +30,8 @@ class FormValidator {
   }
 
   validateTextArea() {
-    const _this = this;
     const textarea = document.querySelector('textarea');
-    if (_this.isEmpty(textarea.value) || _this.checkTextAreaLength(textarea, 50)) {
+    if (this.isEmpty(textarea.value) || this.checkTextAreaLength(textarea, 50)) {
       alert (`${textarea.name} field is either empty or less than 50 characters`);
       return true;
     }
@@ -43,9 +39,8 @@ class FormValidator {
   }
 
   validateCheckBox() {
-    const _this = this;
     const checkBox = document.getElementById('notifyCheckBox');
-    if (_this.isChecked(checkBox)) {
+    if (this.isChecked(checkBox)) {
       alert(`${checkBox.name} cannot be left unchecked`);
       return true;
     }

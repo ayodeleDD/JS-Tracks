@@ -8,17 +8,15 @@ class DisplayAndHide {
 
   init() {
     const parentCheckBox = this.parentCheckBox;
-    const _this = this;
-
     for (let i = parentCheckBox.length - 1; i >= 0; i--) {
       parentCheckBox[i].addEventListener('click', function(e) {
         const parentElement = e.target;
         if (parentElement.checked) {
-          _this.toggleChildren(parentElement, true, 'block');
+          this.toggleChildren(parentElement, true, 'block');
         } else {
-          _this.toggleChildren(parentElement, false, 'none');
+          this.toggleChildren(parentElement, false, 'none');
         }
-      });
+      }.bind(this));
     };
   }
 
@@ -26,7 +24,6 @@ class DisplayAndHide {
     const siblingId = document.getElementById(`${parentElement.id}Sibling`); //Gets the parent sibling ID
     siblingId.style.display = toggleDisplay;
     const silbingCheckBox = siblingId.querySelectorAll('input[type=checkbox]'); //Gets all sibling checkboxes by sibling ID
-
     for (let i = silbingCheckBox.length - 1; i >= 0; i--) {
       silbingCheckBox[i].checked = state;
     };

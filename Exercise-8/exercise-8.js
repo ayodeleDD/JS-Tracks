@@ -10,13 +10,12 @@ class UrlOpener {
   }
 
   init() {
-    const _this = this;
-     _this.popUp(this.windowFeatures);
+     this.popUp(this.windowFeatures);
   }
 
   popUp(windowFeatures) {
     let url = prompt('Please Enter URL? (http://www.example.com)', 'http://');
-    if (url !== null) {
+    if (url !== null && url.trim() !== '') {
       if (!this.urlPattern.test(url)) {
         alert('Invalid URL provided. Bye!');
       } else {
