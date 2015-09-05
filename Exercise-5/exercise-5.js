@@ -19,19 +19,16 @@ class AddRemoveRows {
     const nameBox = this.createTableElement('input', 'text', 'textName');
     const emailBox = this.createTableElement('input', 'text', 'textEmail');
     const saveButton = this.createTableElement('input', 'button', 'saveButton', 'Save');
-
-    saveButton.addEventListener('click', function() {
-      if (this.isTextFieldValid(nameBox) && this.isEmailFieldValid(emailBox)) {
-        this.saveTableRow(row, nameBox, emailBox, saveButton);
-      }
-    }.bind(this));
-
     const elements = {
       name: nameBox,
       email: emailBox,
       save: saveButton,
     };
-
+    saveButton.addEventListener('click', function() {
+      if (this.isTextFieldValid(nameBox) && this.isEmailFieldValid(emailBox)) {
+        this.saveTableRow(row, elements);
+      }
+    }.bind(this));
     this.insertTableCell(row, elements);
   }
 
@@ -43,14 +40,61 @@ class AddRemoveRows {
 
   createTableElement(element, type, identifier, value) {
     const tableElement = document.createElement(element);
-    if (type !== null || name !== null || value !== null) {
-      tableElement.type = type || '';
-      tableElement.name = identifier || '';
-      tableElement.value = value || '';
-    }
+    tableElement.type = type || '';
+    tableElement.name = identifier || '';
+    tableElement.value = value || '';
     tableElement.id = identifier;
-    tableElement.setAttribute('class', identifier)
+    tableElement.className = identifier;
     return tableElement;
+  }
+
+  saveTableRow(row, elements) {
+    const nameValue = document.createTextNode(elements.name.value);
+    const emailValue = document.createTextNode(elements.email.value);
+    const editButton = this.createTableElement('input', 'button', 'editButton', 'Edit');
+    const deleteButton = this.createTableElement('input', 'button', 'deleteButton', 'Delete');
+    const buttonElements = document.createDocumentFragment();
+    buttonElements.appendChild(editButton);
+    buttonElements.appendChild(deleteButton);
+
+    editButton.addEventListener('click', function() {
+      this.doEditTableRow(row, nameValue, emailValue);
+    }.bind(this));
+
+    deleteButton.addEventListener('click', function() {
+      this.doDeleteTableRow(row);
+    }.bind(this));
+
+    row.cells[0].replaceChild(nameValue, elements.name);
+    row.cells[1].replaceChild(emailValue, elements.email);
+    row.cells[2].replaceChild(buttonElements, elements.save);
+  }
+
+  doDeleteTableRow(row) {
+    if (confirm('Are you sure you want to delete this row?')) {
+      this.tableId.deleteRow(row.rowIndex);
+    }
+  }
+
+  doEditTableRow(row, nameValue, emailValue) {
+    const nameBox = this.createTableElement('input', 'text', 'textName', nameValue.textContent);
+    const emailBox = this.createTableElement('input', 'text', 'textEmail', emailValue.textContent);
+    const saveButton = this.createTableElement('input', 'button', 'saveButton', 'Save');
+    const elements = {
+      name: nameBox,
+      email: emailBox,
+      save: saveButton,
+    };
+    saveButton.addEventListener('click', function() {
+      if (this.isTextFieldValid(nameBox) && this.isEmailFieldValid(emailBox)) {
+        this.saveTableRow(row, elements);
+      }
+    }.bind(this));
+
+    row.cells[0].replaceChild(nameBox, nameValue);
+    row.cells[1].replaceChild(emailBox, emailValue);
+    row.deleteCell(2);
+    row.insertCell(2).appendChild(saveButton);
   }
 
   isTextFieldValid(textField) {
@@ -71,52 +115,6 @@ class AddRemoveRows {
       return false;
     }
     return true;
-  }
-
-  saveTableRow(row, nameBox, emailBox, saveButton) {
-    const nameValue = document.createTextNode(nameBox.value);
-    const emailValue = document.createTextNode(emailBox.value);
-    const editButton = this.createTableElement('input', 'button', 'editButton', 'Edit');
-    const deleteButton = this.createTableElement('input', 'button', 'deleteButton', 'Delete');
-    const buttonElements = document.createDocumentFragment();
-    buttonElements.appendChild(editButton);
-    buttonElements.appendChild(deleteButton);
-
-    editButton.addEventListener('click', function() {
-      this.doEditTableRow(row, nameValue, emailValue);
-    }.bind(this));
-
-    deleteButton.addEventListener('click', function() {
-      this.doDeleteTableRow(row);
-    }.bind(this));
-
-    row.cells[0].replaceChild(nameValue, nameBox);
-    row.cells[1].replaceChild(emailValue, emailBox);
-    row.cells[2].replaceChild(buttonElements, saveButton);
-  }
-
-  doDeleteTableRow(row) {
-    if (confirm('Are you sure you want to delete this row?')) {
-      this.tableId.deleteRow(row.rowIndex);
-    }
-  }
-
-  doEditTableRow(row, nameValue, emailValue) {
-    const nameBox = this.createTableElement('input', 'text', 'textName', nameValue.textContent);
-    const emailBox = this.createTableElement('input', 'text', 'textEmail', emailValue.textContent);
-    const saveButton = this.createTableElement('input', 'button', 'saveButton', 'Save');
-
-    saveButton.addEventListener('click', function() {
-      if (this.isTextFieldValid(nameBox) && this.isEmailFieldValid(emailBox)) {
-        this.saveTableRow(row, nameBox, emailBox, saveButton);
-      }
-    }.bind(this));
-
-    row.cells[0].replaceChild(nameBox, nameValue);
-    row.cells[1].replaceChild(emailBox, emailValue);
-    row.deleteCell(2);
-    row.insertCell(2).appendChild(saveButton);
-
   }
 }
 

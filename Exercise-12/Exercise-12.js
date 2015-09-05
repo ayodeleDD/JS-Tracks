@@ -7,7 +7,7 @@ class UrlChecker {
   }
 
   init() {
-    const urlTestPattern = /^(https?:\/\/)?(www?.)?([^.\/.]+(?=\.)|)(\.?[^\/.]+\.[^\/]+)\/?(.+|)$/;
+    const urlTestPattern = /^(https?:\/\/)(www.)([^.\/.]+(?=\.)|)(\.?[^\/.]+\.[^\/]+)\/?(.+|)$/;
     const urlExtractPattern = /^(?:https?:\/\/)?(?:www?.)?([^.\/.]+(?=\.)|)(\.?[^\/.]+\.[^\/]+)\/?(.+|)$/;
     this.submitButton.addEventListener('click', function(formEvent) {
       const urlInputField = document.getElementById('url');

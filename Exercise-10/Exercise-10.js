@@ -78,7 +78,7 @@ class FormValidator {
     return false;
   }
 
- checkTextAreaLength(textarea, areaLength) {
+  checkTextAreaLength(textarea, areaLength) {
   if (textarea.length < areaLength) {
     return true;
   }
